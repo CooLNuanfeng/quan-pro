@@ -1,0 +1,22 @@
+<style lang="sass">
+</style>
+<template>
+  <view class="container">
+    <view class="top-part">
+        
+    </view>
+  </view>
+</template>
+
+<script>
+  import wepy from 'wepy'
+
+  export default class Index extends wepy.page {
+    config = {
+      navigationBarTitleText: '搜券'
+    }
+    onLoad() {
+      console.log('onLoad')
+    }
+  }
+</script>

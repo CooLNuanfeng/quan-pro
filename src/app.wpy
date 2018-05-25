@@ -1,0 +1,25 @@
+<style lang="sass">
+
+</style>
+
+<script>
+import wepy from 'wepy'
+
+export default class extends wepy.app {
+    config = {
+        pages: [
+            'pages/index'
+        ],
+        window: {
+            backgroundTextStyle: 'light',
+            navigationBarBackgroundColor: '#fff',
+            navigationBarTitleText: '搜券',
+            navigationBarTextStyle: 'black'
+        }
+    }
+
+    onLaunch() {
+        console.log('on launch')
+    }
+}
+</script>
