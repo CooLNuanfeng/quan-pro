@@ -1,22 +1,157 @@
-<style lang="sass">
+<style lang="scss">
+@import '../assets/scss/_mixin.scss';
+.top-bg{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 300rpx;
+    image{
+        width: 100%;
+        height: 300rpx;
+    }
+    z-index: 1;
+}
+.top-part{
+    position: relative;
+    height: 300rpx;
+}
+.top-title{
+    padding-top: 20rpx;
+    font-size: 38rpx;
+    color: #fff;
+}
+.top-search{
+    position: absolute;
+    width: 100%;
+    display: flex;
+    padding: 20rpx 60rpx;
+    height: 300rpx;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    z-index: 5;
+    box-sizing: border-box;
+}
+.top-search-input{
+    display: flex;
+    width: 100%;
+    background: #fff;
+    overflow: hidden;
+    box-sizing: border-box;
+    height: 60rpx;
+    border-radius: 30rpx;
+    align-items: center;
+    image{
+        width: 30rpx;
+        height: 30rpx;
+        margin: 15rpx;
+    }
+    input{
+        flex: 1;
+        width: 85%;
+        height: 50rpx;
+        font-size: 20rpx;
+    }
+    text{
+        width: 150rpx;
+        height: 60rpx;
+        justify-content: center;
+        align-items: center;
+        display: inline-flex;
+        vertical-align: middle;
+        color: #fff;
+        font-size: 24rpx;
+        @include linear-gradient(blue,red);
+    }
+}
+.hot-search{
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    margin-top: -20rpx;
+    text{
+        display: inline-flex;
+        padding: 0 20rpx;
+        border: 1rpx solid #fff;
+        border-radius: 20rpx;
+        font-size: 24rpx;
+        margin-right: 10rpx;
+        color: #fff;
+    }
+    text.hot-tag{
+        padding: 0;
+        border: 0;
+        font-size: 28rpx;
+        font-weight: bold;
+    }
+}
+.nav-swiper{
+}
+.swiper-item{
+
+}
+
 </style>
 <template>
-  <view class="container">
+<view class="container">
     <view class="top-part">
-        
+        <view class="top-search">
+            <view class="top-title">海量超级券，全网帮你搜</view>
+            <view class="top-search-input">
+                <image src="../assets/images/search.png"></image>
+                <input placeholder="先领券，后购物，优惠等您搜" confirm-type="search" name="search" @confirm="doSearch" value="{{searchTxt}}" @input="searchInput"/>
+                <image src="../assets/images/close.png"></image>
+                <text @tap="doSearch">搜索</text>
+            </view>
+            <view class="hot-search">
+                <text class="hot-tag">热搜</text>
+                <text>面膜</text>
+                <text>牛仔裤</text>
+                <text>T恤</text>
+            </view>
+        </view>
+        <view class="top-bg"><image src="../assets/images/banner.png"></image></view>
     </view>
-  </view>
+    <swiper class="nav-swiper" indicator-dots="false">
+        <block>
+            <swiper-item>
+                <view class="swiper-item">
+                    <view>
+                        <image src=""></image>
+                        <text>男装</text>
+                    </view>
+                </view>
+            </swiper-item>
+            <!-- <swiper-item>
+                <view class="swiper-item">2</view>
+            </swiper-item> -->
+        </block>
+  </swiper>
+</view>
 </template>
 
 <script>
-  import wepy from 'wepy'
+import wepy from 'wepy'
 
-  export default class Index extends wepy.page {
+export default class Index extends wepy.page {
     config = {
-      navigationBarTitleText: '搜券'
+        navigationBarTitleText: '搜券'
+    }
+    data = {
+        searchTxt: ''
     }
     onLoad() {
-      console.log('onLoad')
+        console.log('onLoad')
     }
-  }
+    methods = {
+        searchInput(ev) {
+            console.log(ev)
+            this.searchTxt = ev.detail.value
+        },
+        doSearch(ev) {
+            console.log(this.searchTxt)
+        }
+    }
+}
 </script>

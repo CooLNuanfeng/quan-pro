@@ -1,0 +1,6 @@
+@mixin linear-gradient($starColor,$endColor,$deg:45) {
+    background: $starColor;
+    background: -moz-linear-gradient(#{$deg}deg, $starColor 0%, $endColor 100%);
+    background: -webkit-linear-gradient(#{$deg}deg, $starColor 0%,$endColor 100%);
+    background: linear-gradient(#{$deg}deg, $starColor 0%,$endColor 100%);
+}

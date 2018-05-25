@@ -5,8 +5,7 @@
   "main": "dist/app.js",
   "scripts": {
     "dev": "wepy build --watch",
-    "build": "cross-env NODE_ENV=production wepy build --no-cache",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "cross-env NODE_ENV=production wepy build --no-cache"
   },
   "author": "CooLNuanfeng <1634898698@qq.com>",
   "license": "MIT",
