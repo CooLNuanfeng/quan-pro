@@ -1,5 +1,7 @@
 <style lang="scss">
-
+page{
+    height: 100%;
+}
 </style>
 
 <script>
@@ -8,7 +10,9 @@ import wepy from 'wepy'
 export default class extends wepy.app {
     config = {
         pages: [
-            'pages/index'
+            'pages/index',
+            'pages/detail',
+            'pages/tutorial'
         ],
         window: {
             backgroundTextStyle: 'light',

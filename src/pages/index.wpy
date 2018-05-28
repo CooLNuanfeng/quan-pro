@@ -1,5 +1,9 @@
 <style lang="scss">
 @import '../assets/scss/_mixin.scss';
+.container{
+    min-height: 100%;
+    background: #f6f6f6;
+}
 .top-bg{
     position: absolute;
     top: 0;
@@ -17,7 +21,7 @@
     height: 300rpx;
 }
 .top-title{
-    padding-top: 20rpx;
+    padding-top: 10rpx;
     font-size: 38rpx;
     color: #fff;
 }
@@ -39,8 +43,8 @@
     background: #fff;
     overflow: hidden;
     box-sizing: border-box;
-    height: 60rpx;
-    border-radius: 30rpx;
+    height: 70rpx;
+    border-radius: 35rpx;
     align-items: center;
     image{
         width: 30rpx;
@@ -55,14 +59,15 @@
     }
     text{
         width: 150rpx;
-        height: 60rpx;
+        height: 70rpx;
         justify-content: center;
         align-items: center;
         display: inline-flex;
         vertical-align: middle;
         color: #fff;
         font-size: 24rpx;
-        @include linear-gradient(blue,red);
+        background: orange;
+        // @include linear-gradient(,orange);
     }
 }
 .hot-search{
@@ -87,10 +92,134 @@
     }
 }
 .nav-swiper{
+    height: 370rpx;
+    background: #fff;
 }
 .swiper-item{
-
+    view{
+        width: 20%;
+        display: inline-flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        padding-top: 40rpx;
+        box-sizing: border-box;
+        image{
+            width: 80rpx;
+            height: 80rpx;
+        }
+        text{
+            padding-top: 10rpx;
+            font-size: 26rpx;
+            color: $black;
+        }
+    }
 }
+
+.shop-list{
+    margin-top: 20rpx;
+    padding: 20rpx 0;
+    padding-top: 0;
+    background: #fff;
+}
+
+.shop-list-item{
+    display: flex;
+    padding: 0 20rpx;
+    padding-top: 20rpx;
+    &:last-child{
+        .shop-item-price{
+            border-bottom: 0;
+        }
+    }
+}
+.shop-item-img{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-right: 20rpx;
+    image{
+        width: 200rpx;
+        height: 200rpx;
+        border-radius: 8rpx;
+    }
+}
+
+.shop-item-info{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.shop-item-title{
+    font-size: 28rpx;
+    color: #111;
+    @include text-mutiplue-overflow;
+}
+
+.shop-item-price{
+    display: flex;
+    font-size: 24rpx;
+    padding-bottom: 10rpx;
+    margin-bottom: -10rpx;
+    border-bottom: 1rpx dashed #ededed;
+}
+.shop-item-quan{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    view:nth-of-type(1){
+        color: $gray;
+        text{
+            text-decoration: line-through;
+        }
+    }
+    view:nth-of-type(2){
+        color: $themeRed;
+        font-size: 26rpx;
+        font-weight: bolder;
+        text{
+            padding: 2rpx 5rpx;
+            border-radius: 4rpx;
+            background: $themeRed;
+            color: #fff;
+            font-size: 22rpx;
+            font-weight: normal;
+        }
+    }
+    view:nth-of-type(3){
+        font-size: 26rpx;
+        color: $themeRed;
+        text{
+            font-size: 30rpx;
+            font-weight: bold;
+        }
+    }
+}
+.shop-item-btn{
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    text:first-child{
+        padding: 10rpx 25rpx;
+        border-top-left-radius: 10rpx;
+        border-top-right-radius: 10rpx;
+        color: #fff;
+        background: $themeRed;
+    }
+    text:last-child{
+        color: $themeRed;
+        background: #fff;
+        padding: 10rpx 25rpx;
+        border: 1rpx dotted $themeRed;
+        border-top: 0;
+        border-bottom-left-radius: 10rpx;
+        border-bottom-right-radius: 10rpx;
+    }
+}
+
 
 </style>
 <template>
@@ -101,7 +230,7 @@
             <view class="top-search-input">
                 <image src="../assets/images/search.png"></image>
                 <input placeholder="先领券，后购物，优惠等您搜" confirm-type="search" name="search" @confirm="doSearch" value="{{searchTxt}}" @input="searchInput"/>
-                <image src="../assets/images/close.png"></image>
+                <image src="../assets/images/close.png" hidden="{{clearIcon}}" @tap="clearInput"></image>
                 <text @tap="doSearch">搜索</text>
             </view>
             <view class="hot-search">
@@ -113,13 +242,49 @@
         </view>
         <view class="top-bg"><image src="../assets/images/banner.png"></image></view>
     </view>
-    <swiper class="nav-swiper" indicator-dots="false">
+    <swiper class="nav-swiper">
         <block>
             <swiper-item>
                 <view class="swiper-item">
                     <view>
-                        <image src=""></image>
+                        <image src="http://dummyimage.com/80x80"></image>
+                        <text>推荐</text>
+                    </view>
+                    <view>
+                        <image src="http://dummyimage.com/80x80"></image>
                         <text>男装</text>
+                    </view>
+                    <view>
+                        <image src="http://dummyimage.com/80x80"></image>
+                        <text>女装</text>
+                    </view>
+                    <view>
+                        <image src="http://dummyimage.com/80x80"></image>
+                        <text>母婴</text>
+                    </view>
+                    <view>
+                        <image src="http://dummyimage.com/80x80"></image>
+                        <text>推荐</text>
+                    </view>
+                    <view>
+                        <image src="http://dummyimage.com/80x80"></image>
+                        <text>男装</text>
+                    </view>
+                    <view>
+                        <image src="http://dummyimage.com/80x80"></image>
+                        <text>女装</text>
+                    </view>
+                    <view>
+                        <image src="http://dummyimage.com/80x80"></image>
+                        <text>母婴</text>
+                    </view>
+                    <view>
+                        <image src="http://dummyimage.com/80x80"></image>
+                        <text>母婴</text>
+                    </view>
+                    <view>
+                        <image src="http://dummyimage.com/80x80"></image>
+                        <text>母婴</text>
                     </view>
                 </view>
             </swiper-item>
@@ -127,30 +292,82 @@
                 <view class="swiper-item">2</view>
             </swiper-item> -->
         </block>
-  </swiper>
+    </swiper>
+    <view class="shop-list">
+        <view class="shop-list-item" @tap="goDetail(1)">
+            <view class="shop-item-img">
+                <image src="http://dummyimage.com/200x200"></image>
+            </view>
+            <view class="shop-item-info">
+                <view class="shop-item-title">日式多功能颈枕 针织款进口微粒子，全面呵护肩颈 </view>
+                <view class="shop-item-price">
+                    <view class="shop-item-quan">
+                        <view>原价：<text>￥98</text></view>
+                        <view><text>券</text> ￥50</view>
+                        <view>券后价： ￥<text>48</text></view>
+                    </view>
+                    <view class="shop-item-btn">
+                        <text>查看详情</text>
+                        <text>领券购买</text>
+                    </view>
+                </view>
+            </view>
+        </view>
+
+        <view class="shop-list-item">
+            <view class="shop-item-img">
+                <image src="http://dummyimage.com/200x200"></image>
+            </view>
+            <view class="shop-item-info">
+                <view class="shop-item-title">日式多功能颈枕 针织款进口微粒子，全面呵护肩颈 </view>
+                <view class="shop-item-price">
+                    <view class="shop-item-quan">
+                        <view>原价：<text>￥98</text></view>
+                        <view><text>券</text> ￥50</view>
+                        <view>券后价： ￥<text>48</text></view>
+                    </view>
+                    <view class="shop-item-btn">
+                        <text>查看详情</text>
+                        <text>领券购买</text>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
 </view>
 </template>
 
 <script>
-import wepy from 'wepy'
+import wepy from 'wepy';
 
 export default class Index extends wepy.page {
     config = {
         navigationBarTitleText: '搜券'
     }
     data = {
-        searchTxt: ''
+        searchTxt: '',
+        clearIcon: true
     }
     onLoad() {
-        console.log('onLoad')
+        console.log('onLoad');
     }
     methods = {
         searchInput(ev) {
-            console.log(ev)
-            this.searchTxt = ev.detail.value
+            console.log(ev);
+            this.searchTxt = ev.detail.value;
+            this.clearIcon = false;
         },
         doSearch(ev) {
-            console.log(this.searchTxt)
+            console.log(this.searchTxt);
+        },
+        clearInput() {
+            this.searchTxt = '';
+            this.clearIcon = true;
+        },
+        goDetail(id) {
+            wx.navigateTo({
+                url: 'detail?id=' + id
+            });
         }
     }
 }

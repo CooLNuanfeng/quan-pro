@@ -1,0 +1,12 @@
+<style lang="scss">
+</style>
+<template>
+    <view>Tutorial</view>
+</template>
+
+<script>
+import wepy from 'wepy';
+
+export default class Index extends wepy.page {
+}
+</script>

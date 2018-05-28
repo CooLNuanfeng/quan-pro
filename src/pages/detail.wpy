@@ -1,0 +1,332 @@
+<style lang="scss">
+@import '../assets/scss/_mixin.scss';
+.scroll-view{
+    height: 100%;
+    min-height: 100%;
+    background: #f6f6f6;
+}
+
+.swiper-banner{
+    background: #fff;
+    height: 500rpx;
+    .swiper-slide{
+        height: 500rpx;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    image{
+        max-width: 100%;
+        max-height: 100%;
+    }
+}
+.swiper-info{
+    display: flex;
+    padding: 20rpx;
+    padding-right: 0;
+    border-bottom: 1rpx solid #ededed;
+    background: #fff;
+}
+.shop-info{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.shop-title{
+    padding-right: 5rpx;
+    font-size: 30rpx;
+    color: $black;
+    border-right: 1rpx solid #ededed;
+    @include text-mutiplue-overflow;
+    image{
+        width: 40rpx;
+        height: 20rpx;
+        display: inline-block;
+        vertical-align: middle;
+    }
+}
+.shop-price{
+    font-size: 26rpx;
+    color: $black;
+    view{
+        display: inline-block;
+        vertical-align: middle;
+        text{
+            color: $themeRed;
+            text{
+                font-size: 30rpx;
+                font-weight: bold;
+            }
+        }
+        &:last-child{
+            padding-left: 10rpx;
+            font-size: 20rpx;
+            text-decoration: line-through;
+            color: $gray;
+        }
+    }
+}
+.shop-sales{
+    font-size: 26rpx;
+    color: $black;
+    text{
+        color: $gray;
+    }
+}
+
+.shop-share{
+    width: 100rpx;
+    view{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        image{
+            width: 40rpx;
+            height: 40rpx;
+        }
+        text{
+            padding-top: 15rpx;
+            font-size: 24rpx;
+            color: $black;
+        }
+    }
+}
+
+.shop-farther{
+    padding: 20rpx 0;
+    font-size: 26rpx;
+    background: #fff;
+    text{
+        color: $gray;
+    }
+}
+.shop-other{
+    padding: 0 20rpx 20rpx;
+}
+
+.quan-card-box{
+    margin: 0 20rpx;
+    position: relative;
+    height: 200rpx;
+    background: #fff;
+    image{
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 2;
+    }
+}
+.quan-card{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    z-index: 5;
+}
+.quan-text{
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 20rpx 0;
+    border-right: 1px dotted #fff;
+    text:first-child{
+        font-size: 50rpx;
+        font-weight: bold;
+    }
+    text{
+        font-size: 24rpx;
+        color: #fff;
+    }
+}
+.quan-btn{
+    width: 200rpx;
+    padding: 0 60rpx;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #fff;
+    box-sizing: border-box;
+    font-size: 40rpx;
+}
+
+.detail-warp{
+    margin-top: 20rpx;
+    padding: 20rpx 0;
+    padding-bottom: 80rpx;
+    background: #fff;
+    image{
+        width: 100%;
+        vertical-align: top;
+    }
+}
+
+.detail-title{
+    padding-bottom: 20rpx;
+    text-align: center;
+    font-size: 26rpx;
+    color: $black;
+}
+
+.detail-fixed{
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 5;
+    height: 60rpx;
+    background: #fff;
+    padding: 10rpx 20rpx;
+    view{
+        flex: 1;
+    }
+}
+.fixed-btns{
+    image{
+        width: 60rpx;
+        height: 60rpx;
+        margin-right: 20rpx;
+        vertical-align: top;
+    }
+}
+.fixed-do{
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    text{
+        padding: 10rpx 20rpx;
+        color: #fff;
+        font-size: 26rpx;
+        background: $themeRed;
+        &:nth-of-type(1){
+            background: #fff;
+            color: $themeRed;
+            border: 1rpx solid $themeRed;
+            border-top-left-radius: 40rpx;
+            border-bottom-left-radius: 40rpx;
+        }
+        &:nth-of-type(2){
+            border: 1rpx solid $themeRed;
+            border-top-right-radius: 40rpx;
+            border-bottom-right-radius: 40rpx;
+        }
+    }
+}
+
+.right-fixed{
+    position: fixed;
+    right: 20rpx;
+    bottom: 100rpx;
+    z-index: 5;
+    image{
+        width: 60rpx;
+        height: 60rpx;
+        margin-top: 20rpx;
+    }
+}
+
+</style>
+<template>
+    <scroll-view class="scroll-view" scroll-y scroll-top="{{scrollTop}}" @scroll="scroll">
+        <swiper class="swiper-banner">
+            <block>
+                <swiper-item class="swiper-slide">
+                    <image src="http://dummyimage.com/750x500"/>
+                </swiper-item>
+                <swiper-item  class="swiper-slide">
+                    <image src="http://dummyimage.com/750x500"/>
+                </swiper-item>
+             </block>
+        </swiper>
+        <view class="swiper-info">
+            <view class="shop-info">
+                <view class="shop-title"><image src="http://dummyimage.com/40x20"></image>日式多功能颈枕 针织款进口微粒子，全面呵护肩颈</view>
+                <view>
+                    <view class="shop-price">
+                        <view>价格： <text>券后价￥<text>15</text>元</text></view>
+                        <view>原价：￥35.00元</view>
+                    </view>
+                    <view class="shop-sales">
+                        销量： <text>11390件</text>
+                    </view>
+                </view>
+            </view>
+            <view class="shop-share">
+                <view>
+                    <image src="http://dummyimage.com/40x40"></image>
+                    <text>分享</text>
+                </view>
+            </view>
+        </view>
+        <view class="shop-farther">
+            <view class="shop-other">其他信息: <text>可领10元券，满11.00减10元</text></view>
+            <view class="quan-card-box">
+                <image src="../assets/images/quan_card.png"></image>
+                <view class="quan-card">
+                    <view class="quan-text">
+                        <text>10元券</text>
+                        <text>使用期限：2018.5.17-2018.5.30</text>
+                        <text>领券后请马上下单，以免优惠券过期</text>
+                    </view>
+                    <view class="quan-btn">立即领券</view>
+                </view>
+            </view>
+        </view>
+        <view class="detail-warp">
+            <view class="detail-title">-商品详情-</view>
+            <image src="http://dummyimage.com/750x300"></image>
+            <image src="http://dummyimage.com/750x400"></image>
+            <image src="http://dummyimage.com/750x350"></image>
+        </view>
+    </scroll-view>
+    <view class="detail-fixed">
+        <view class="fixed-btns">
+            <image src="http://dummyimage.com/60x60"></image>
+            <image src="http://dummyimage.com/60x60"></image>
+        </view>
+        <view class="fixed-do"><text @tap="goTutorial">如何购买</text><text>立即领券购买</text></view>
+    </view>
+    <view hidden="{{toTopShow}}" class="right-fixed">
+        <image src="http://dummyimage.com/60x60" @tap="goTop"></image>
+    </view>
+</template>
+
+<script>
+import wepy from 'wepy';
+
+export default class Index extends wepy.page {
+    onLoad(options) {
+        console.log(options);
+    }
+    data = {
+        scrollTop: 0,
+        toTopShow: true
+    }
+    methods = {
+        scroll(ev) {
+            if (ev.detail.scrollTop > 200) {
+                this.toTopShow = false;
+            } else {
+                this.toTopShow = true;
+            }
+            this.scrollTop = ev.detail.scrollTop;
+        },
+        goTop() {
+            this.scrollTop = 0;
+            this.$apply();
+        },
+        goTutorial() {
+            wx.navigateTo({
+                url: 'tutorial'
+            });
+        }
+    }
+}
+</script>
