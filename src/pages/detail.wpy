@@ -1,9 +1,107 @@
+<template>
+    <scroll-view class="scroll-view" scroll-y scroll-top="{{scrollTop}}" @scroll="scroll">
+        <swiper class="swiper-banner">
+            <block>
+                <swiper-item class="swiper-slide">
+                    <image src="http://dummyimage.com/750x500"/>
+                </swiper-item>
+                <swiper-item  class="swiper-slide">
+                    <image src="http://dummyimage.com/750x500"/>
+                </swiper-item>
+             </block>
+        </swiper>
+        <view class="swiper-info">
+            <view class="shop-info">
+                <view class="shop-title"><image src="http://dummyimage.com/40x20"></image>日式多功能颈枕 针织款进口微粒子，全面呵护肩颈</view>
+                <view>
+                    <view class="shop-price">
+                        <view>价格： <text>券后价￥<text>15</text>元</text></view>
+                        <view>原价：￥35.00元</view>
+                    </view>
+                    <view class="shop-sales">
+                        销量： <text>11390件</text>
+                    </view>
+                </view>
+            </view>
+            <view class="shop-share">
+                <view>
+                    <image src="http://dummyimage.com/40x40"></image>
+                    <text>分享</text>
+                </view>
+            </view>
+        </view>
+        <view class="shop-farther">
+            <view class="shop-other">其他信息: <text>可领10元券，满11.00减10元</text></view>
+            <view class="quan-card-box">
+                <image src="../assets/images/quan_card.png"></image>
+                <view class="quan-card">
+                    <view class="quan-text">
+                        <text>10元券</text>
+                        <text>使用期限：2018.5.17-2018.5.30</text>
+                        <text>领券后请马上下单，以免优惠券过期</text>
+                    </view>
+                    <view class="quan-btn">立即领券</view>
+                </view>
+            </view>
+        </view>
+        <view class="detail-warp">
+            <view class="detail-title">-商品详情-</view>
+            <image src="http://dummyimage.com/750x300"></image>
+            <image src="http://dummyimage.com/750x400"></image>
+            <image src="http://dummyimage.com/750x350"></image>
+        </view>
+    </scroll-view>
+    <view class="detail-fixed">
+        <view class="fixed-btns">
+            <image src="http://dummyimage.com/60x60"></image>
+            <image src="http://dummyimage.com/60x60"></image>
+        </view>
+        <view class="fixed-do"><text @tap="goTutorial">如何购买</text><text>立即领券购买</text></view>
+    </view>
+    <view hidden="{{toTopShow}}" class="right-fixed">
+        <image src="http://dummyimage.com/60x60" @tap="goTop"></image>
+    </view>
+</template>
+
+<script>
+import wepy from 'wepy';
+
+export default class Index extends wepy.page {
+    onLoad(options) {
+        console.log(options);
+    }
+    data = {
+        scrollTop: 0,
+        toTopShow: true
+    }
+    methods = {
+        scroll(ev) {
+            if (ev.detail.scrollTop > 200) {
+                this.toTopShow = false;
+            } else {
+                this.toTopShow = true;
+            }
+            this.scrollTop = ev.detail.scrollTop;
+        },
+        goTop() {
+            this.scrollTop = 0;
+            this.$apply();
+        },
+        goTutorial() {
+            wx.navigateTo({
+                url: 'tutorial'
+            });
+        }
+    }
+}
+</script>
+
+
 <style lang="scss">
 @import '../assets/scss/_mixin.scss';
 .scroll-view{
     height: 100%;
     min-height: 100%;
-    background: #f6f6f6;
 }
 
 .swiper-banner{
@@ -233,100 +331,3 @@
 }
 
 </style>
-<template>
-    <scroll-view class="scroll-view" scroll-y scroll-top="{{scrollTop}}" @scroll="scroll">
-        <swiper class="swiper-banner">
-            <block>
-                <swiper-item class="swiper-slide">
-                    <image src="http://dummyimage.com/750x500"/>
-                </swiper-item>
-                <swiper-item  class="swiper-slide">
-                    <image src="http://dummyimage.com/750x500"/>
-                </swiper-item>
-             </block>
-        </swiper>
-        <view class="swiper-info">
-            <view class="shop-info">
-                <view class="shop-title"><image src="http://dummyimage.com/40x20"></image>日式多功能颈枕 针织款进口微粒子，全面呵护肩颈</view>
-                <view>
-                    <view class="shop-price">
-                        <view>价格： <text>券后价￥<text>15</text>元</text></view>
-                        <view>原价：￥35.00元</view>
-                    </view>
-                    <view class="shop-sales">
-                        销量： <text>11390件</text>
-                    </view>
-                </view>
-            </view>
-            <view class="shop-share">
-                <view>
-                    <image src="http://dummyimage.com/40x40"></image>
-                    <text>分享</text>
-                </view>
-            </view>
-        </view>
-        <view class="shop-farther">
-            <view class="shop-other">其他信息: <text>可领10元券，满11.00减10元</text></view>
-            <view class="quan-card-box">
-                <image src="../assets/images/quan_card.png"></image>
-                <view class="quan-card">
-                    <view class="quan-text">
-                        <text>10元券</text>
-                        <text>使用期限：2018.5.17-2018.5.30</text>
-                        <text>领券后请马上下单，以免优惠券过期</text>
-                    </view>
-                    <view class="quan-btn">立即领券</view>
-                </view>
-            </view>
-        </view>
-        <view class="detail-warp">
-            <view class="detail-title">-商品详情-</view>
-            <image src="http://dummyimage.com/750x300"></image>
-            <image src="http://dummyimage.com/750x400"></image>
-            <image src="http://dummyimage.com/750x350"></image>
-        </view>
-    </scroll-view>
-    <view class="detail-fixed">
-        <view class="fixed-btns">
-            <image src="http://dummyimage.com/60x60"></image>
-            <image src="http://dummyimage.com/60x60"></image>
-        </view>
-        <view class="fixed-do"><text @tap="goTutorial">如何购买</text><text>立即领券购买</text></view>
-    </view>
-    <view hidden="{{toTopShow}}" class="right-fixed">
-        <image src="http://dummyimage.com/60x60" @tap="goTop"></image>
-    </view>
-</template>
-
-<script>
-import wepy from 'wepy';
-
-export default class Index extends wepy.page {
-    onLoad(options) {
-        console.log(options);
-    }
-    data = {
-        scrollTop: 0,
-        toTopShow: true
-    }
-    methods = {
-        scroll(ev) {
-            if (ev.detail.scrollTop > 200) {
-                this.toTopShow = false;
-            } else {
-                this.toTopShow = true;
-            }
-            this.scrollTop = ev.detail.scrollTop;
-        },
-        goTop() {
-            this.scrollTop = 0;
-            this.$apply();
-        },
-        goTutorial() {
-            wx.navigateTo({
-                url: 'tutorial'
-            });
-        }
-    }
-}
-</script>

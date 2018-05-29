@@ -1,0 +1,476 @@
+<template>
+    <scroll-view scroll-y="{{selectFlag}}" class="classify-page">
+        <view class="nav-bar">
+            <view class="active">默认排序</view>
+            <view>销量优先</view>
+            <view>价格排序</view>
+            <view @tap="selectChange">
+                <image src="http://dummyimage.com/40x40"></image>
+                <text>筛选</text>
+                <image src="http://dummyimage.com/40x40"></image>
+            </view>
+        </view>
+        <view hidden="{{selectFlag}}" class="nav-select">
+            <view class="nav-select-warp">
+                <view class="nav-select-item">
+                    <view class="nav-select-title">商品分类</view>
+                    <view class="nav-select-option">
+                        <view wx:for="{{navList}}" wx:key data-type="{{item.type}}">{{item.name}}</view>
+                    </view>
+                </view>
+                <view class="nav-select-item">
+                    <view class="nav-select-title">活动</view>
+                    <view class="nav-select-option">
+                        <view wx:for="{{plateSection}}" wx:key data-type="{{item.type}}">{{item.name}}</view>
+                    </view>
+                </view>
+                <view class="nav-select-item">
+                    <view class="nav-select-title">排序</view>
+                    <view class="nav-select-option">
+                        <view>默认排序</view>
+                        <view>销量排行</view>
+                        <view class="active">价格由低到高</view>
+                        <view>价格由高到低</view>
+                    </view>
+                </view>
+                <view class="nav-select-item">
+                    <view class="nav-select-title">商家</view>
+                    <view class="nav-select-option">
+                        <view class="active">淘宝</view>
+                        <view>天猫</view>
+                    </view>
+                </view>
+            </view>
+            <view class="nav-select-btn">
+                <view class="select-reset">重置</view>
+                <view class="select-sure">确定</view>
+            </view>
+        </view>
+        <view hidden="{{selectFlag}}" class="mask" @tap="closeMask"></view>
+        <view class="result-list">
+            <view class="result-item">
+                <view class="result-item-img">
+                    <image src="http://dummyimage.com/200x200"></image>
+                </view>
+                <view class="result-item-info">
+                    <view class="result-shop-number">
+                        <view class="sale-number">月销量： <text>12463件</text></view>
+                        <text class="sale-quan">20元券</text>
+                    </view>
+                    <view class="result-shop-title">日式多功能颈枕 针织款进口微粒子，全面呵护肩颈</view>
+                    <view class="result-shop-price">
+                        券后价：￥<text>12000</text>元 <text class="del-text">￥14008</text>
+                    </view>
+                    <view class="result-shop-name">
+                        <view><image src="http://dummyimage.com/20x20"></image>tyakasha官方旗舰店</view>
+                        <view>天猫</view>
+                    </view>
+                </view>
+            </view>
+            <view class="result-item">
+                <view class="result-item-img">
+                    <image src="http://dummyimage.com/200x200"></image>
+                </view>
+                <view class="result-item-info">
+                    <view class="result-shop-number">
+                        <view class="sale-number">月销量： <text>12463件</text></view>
+                        <text class="sale-quan">20元券</text>
+                    </view>
+                    <view class="result-shop-title">日式多功能颈枕 针织款进口微粒子，全面呵护肩颈</view>
+                    <view class="result-shop-price">
+                        券后价：￥<text>12000</text>元 <text class="del-text">￥14008</text>
+                    </view>
+                    <view class="result-shop-name">
+                        <view><image src="http://dummyimage.com/20x20"></image>tyakasha官方旗舰店</view>
+                        <view>天猫</view>
+                    </view>
+                </view>
+            </view>
+            <view class="result-item">
+                <view class="result-item-img">
+                    <image src="http://dummyimage.com/200x200"></image>
+                </view>
+                <view class="result-item-info">
+                    <view class="result-shop-number">
+                        <view class="sale-number">月销量： <text>12463件</text></view>
+                        <text class="sale-quan">20元券</text>
+                    </view>
+                    <view class="result-shop-title">日式多功能颈枕 针织款进口微粒子，全面呵护肩颈</view>
+                    <view class="result-shop-price">
+                        券后价：￥<text>12000</text>元 <text class="del-text">￥14008</text>
+                    </view>
+                    <view class="result-shop-name">
+                        <view><image src="http://dummyimage.com/20x20"></image>tyakasha官方旗舰店</view>
+                        <view>天猫</view>
+                    </view>
+                </view>
+            </view>
+
+            <view class="result-item">
+                <view class="result-item-img">
+                    <image src="http://dummyimage.com/200x200"></image>
+                </view>
+                <view class="result-item-info">
+                    <view class="result-shop-number">
+                        <view class="sale-number">月销量： <text>12463件</text></view>
+                        <text class="sale-quan">20元券</text>
+                    </view>
+                    <view class="result-shop-title">日式多功能颈枕 针织款进口微粒子，全面呵护肩颈</view>
+                    <view class="result-shop-price">
+                        券后价：￥<text>12000</text>元 <text class="del-text">￥14008</text>
+                    </view>
+                    <view class="result-shop-name">
+                        <view><image src="http://dummyimage.com/20x20"></image>tyakasha官方旗舰店</view>
+                        <view>天猫</view>
+                    </view>
+                </view>
+            </view>
+            <view class="result-item">
+                <view class="result-item-img">
+                    <image src="http://dummyimage.com/200x200"></image>
+                </view>
+                <view class="result-item-info">
+                    <view class="result-shop-number">
+                        <view class="sale-number">月销量： <text>12463件</text></view>
+                        <text class="sale-quan">20元券</text>
+                    </view>
+                    <view class="result-shop-title">日式多功能颈枕 针织款进口微粒子，全面呵护肩颈</view>
+                    <view class="result-shop-price">
+                        券后价：￥<text>12000</text>元 <text class="del-text">￥14008</text>
+                    </view>
+                    <view class="result-shop-name">
+                        <view><image src="http://dummyimage.com/20x20"></image>tyakasha官方旗舰店</view>
+                        <view>天猫</view>
+                    </view>
+                </view>
+            </view>
+            <view class="result-item">
+                <view class="result-item-img">
+                    <image src="http://dummyimage.com/200x200"></image>
+                </view>
+                <view class="result-item-info">
+                    <view class="result-shop-number">
+                        <view class="sale-number">月销量： <text>12463件</text></view>
+                        <text class="sale-quan">20元券</text>
+                    </view>
+                    <view class="result-shop-title">日式多功能颈枕 针织款进口微粒子，全面呵护肩颈</view>
+                    <view class="result-shop-price">
+                        券后价：￥<text>12000</text>元 <text class="del-text">￥14008</text>
+                    </view>
+                    <view class="result-shop-name">
+                        <view><image src="http://dummyimage.com/20x20"></image>tyakasha官方旗舰店</view>
+                        <view>天猫</view>
+                    </view>
+                </view>
+            </view>
+            <view class="result-item">
+                <view class="result-item-img">
+                    <image src="http://dummyimage.com/200x200"></image>
+                </view>
+                <view class="result-item-info">
+                    <view class="result-shop-number">
+                        <view class="sale-number">月销量： <text>12463件</text></view>
+                        <text class="sale-quan">20元券</text>
+                    </view>
+                    <view class="result-shop-title">日式多功能颈枕 针织款进口微粒子，全面呵护肩颈</view>
+                    <view class="result-shop-price">
+                        券后价：￥<text>12000</text>元 <text class="del-text">￥14008</text>
+                    </view>
+                    <view class="result-shop-name">
+                        <view><image src="http://dummyimage.com/20x20"></image>tyakasha官方旗舰店</view>
+                        <view>天猫</view>
+                    </view>
+                </view>
+            </view>
+            <view class="result-item">
+                <view class="result-item-img">
+                    <image src="http://dummyimage.com/200x200"></image>
+                </view>
+                <view class="result-item-info">
+                    <view class="result-shop-number">
+                        <view class="sale-number">月销量： <text>12463件</text></view>
+                        <text class="sale-quan">20元券</text>
+                    </view>
+                    <view class="result-shop-title">日式多功能颈枕 针织款进口微粒子，全面呵护肩颈</view>
+                    <view class="result-shop-price">
+                        券后价：￥<text>12000</text>元 <text class="del-text">￥14008</text>
+                    </view>
+                    <view class="result-shop-name">
+                        <view><image src="http://dummyimage.com/20x20"></image>tyakasha官方旗舰店</view>
+                        <view>天猫</view>
+                    </view>
+                </view>
+            </view>
+
+
+        </view>
+    </scroll-view>
+</template>
+
+<script>
+import wepy from 'wepy';
+
+export default class Index extends wepy.page {
+    data = {
+        selectFlag: true,
+        navList: [],
+        plateSection: []
+    }
+    onLoad() {
+        this.navList = this.$parent.globalData.navConfig;
+        this.plateSection = this.$parent.globalData.plateSection;
+    }
+    methods = {
+        selectChange() {
+            this.selectFlag = false;
+        },
+        closeMask() {
+            this.selectFlag = true;
+        }
+    }
+}
+</script>
+
+<style lang="scss">
+@import '../assets/scss/_mixin.scss';
+
+.tag-icon{
+    padding: 2rpx 6rpx;
+    font-size: 24rpx;
+    color: #fff;
+    border-radius: 4rpx;
+}
+.classify-page{
+    height: 100%;
+}
+.hidden{
+    overflow: hidden;
+}
+.nav-bar{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 80rpx;
+    display: flex;
+    background: #fff;
+    border-bottom: 1rpx solid #ededed;
+    z-index: 2;
+    view{
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 26rpx;
+        color: $black;
+        &.active{
+            color: $orange;
+        }
+        &:last-child{
+            border-left: 1rpx solid #ddd;
+            image{
+                margin: 0 10rpx;
+                width: 40rpx;
+                height: 40rpx;
+                display: inline-block;
+            }
+        }
+    }
+}
+
+.result-list{
+    padding-top: 85rpx;
+    overflow: hidden;
+}
+.result-item{
+    display: inline-flex;
+    flex-direction: column;
+    width: 370rpx;
+    margin-bottom: 10rpx;
+    &:nth-of-type(2n+1){
+        margin-right: 10rpx;
+    }
+}
+.result-item-img{
+    width: 370rpx;
+    height: 370rpx;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    img{
+        max-width: 100%;
+        max-height: 100%;
+    }
+}
+.result-item-info{
+    padding: 10rpx;
+    background: #fff;
+}
+.result-shop-number{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.sale-number{
+    flex: 2;
+    font-size: 24rpx;
+    color: $gray;
+    @include text-overflow;
+    text{
+        color: $black;
+    }
+}
+.sale-quan{
+    background: $orange;
+    @extend .tag-icon;
+}
+.result-shop-title{
+    font-size: 28rpx;
+    color: $black;
+    @include text-mutiplue-overflow;
+}
+.result-shop-price{
+    font-size: 24rpx;
+    color: $themeRed;
+    text:first-child{
+        font-weight: bold;
+        font-size: 32rpx;
+    }
+    text.del-text{
+        color: $gray;
+        text-decoration: line-through;
+    }
+}
+.result-shop-name{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    view:first-child{
+        flex: 1;
+        font-size: 20rpx;
+        color: $gray;
+        @include text-overflow;
+        image{
+            width: 20rpx;
+            height: 20rpx;
+            display: inline-block;
+        }
+    }
+    view:last-child{
+        background: $themeRed;
+        @extend .tag-icon;
+    }
+}
+
+.mask{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 5;
+    background: rgba(0,0,0,.8);
+}
+.nav-select{
+    position: fixed;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 580rpx;
+    z-index: 8;
+    background: #fff;
+}
+.nav-select-warp{
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 90rpx;
+    overflow: hidden;
+    overflow-y: auto;
+}
+.nav-select-item{
+    padding: 30rpx 15rpx 15rpx;
+    border-bottom: 1rpx solid #ededed;
+    &:last-child{
+        border-bottom: 0;
+    }
+}
+.nav-select-title{
+    padding-bottom: 10rpx;
+    font-size: 26rpx;
+    color: $black;
+}
+.nav-select-option{
+    width: 110%;
+    view{
+        font-size: 22rpx;
+        width: 165rpx;
+        padding: 15rpx 0;
+        display: inline-flex;
+        justify-content: center;
+        align-items: center;
+        background: #f6f6f6;
+        color: #666;
+        border-radius: 8rpx;
+        margin-right:30rpx;
+        margin-bottom: 15rpx;
+        box-sizing: border-box;
+        overflow: hidden;
+        &.active{
+            position: relative;
+            color: $themeRed;
+            border: 1rpx solid $themeRed;
+            &::after{
+                content: '';
+                position: absolute;
+                width: 18rpx;
+                height: 10rpx;
+                border-radius: 2rpx;
+                box-sizing: border-box;
+                background: $themeRed;
+                border-left: 2rpx solid #fff;
+                border-bottom: 2rpx solid #fff;
+                    transform: rotate(-60deg) translateX(2rpx);
+                bottom: 6rpx;
+                right: 2rpx;
+            }
+            &::before{
+                content: "";
+                display: block;
+                position: absolute;
+                bottom: 0;
+                right: 0;
+                border-bottom: 35rpx solid $themeRed;
+                border-left: 35rpx solid transparent;
+            }
+        }
+    }
+}
+.nav-select-btn{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 80rpx;
+    display: flex;
+    font-size: 24rpx;
+    view{
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 80rpx;
+    }
+}
+.select-reset{
+    border-top: 1rpx solid #ededed;
+    color: $black;
+}
+.select-sure{
+    border-top: 1rpx solid $themeRed;
+    background: $themeRed;
+    color: #fff;
+}
+</style>

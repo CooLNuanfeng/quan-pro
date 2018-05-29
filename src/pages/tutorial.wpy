@@ -1,7 +1,8 @@
-<style lang="scss">
-</style>
 <template>
-    <view>Tutorial</view>
+    <view class="tutorial">
+        <image src="http://dummyimage.com/750x500"></image>
+        <image src="http://dummyimage.com/750x500"></image>
+    </view>
 </template>
 
 <script>
@@ -10,3 +11,11 @@ import wepy from 'wepy';
 export default class Index extends wepy.page {
 }
 </script>
+
+<style lang="scss">
+.tutorial{
+    image{
+        width: 100%;
+    }
+}
+</style>

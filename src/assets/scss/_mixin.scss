@@ -1,7 +1,7 @@
 $themeRed: #CC3D3D;
 $gray: #999;
 $black: #333;
-
+$orange: #f50;
 
 @mixin linear-gradient($starColor,$endColor,$deg:45) {
     background: $starColor;

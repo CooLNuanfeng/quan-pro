@@ -1,8 +1,142 @@
+<template>
+<view class="container">
+    <view class="top-part">
+        <view class="top-search">
+            <view class="top-title">海量超级券，全网帮你搜</view>
+            <view class="top-search-input">
+                <image src="../assets/images/search.png"></image>
+                <input placeholder="先领券，后购物，优惠等您搜" confirm-type="search" name="search" @confirm="doSearch" value="{{searchTxt}}" @input="searchInput"/>
+                <image src="../assets/images/close.png" hidden="{{clearIcon}}" @tap="clearInput"></image>
+                <text @tap="doSearch">搜索</text>
+            </view>
+            <view class="hot-search">
+                <text class="hot-tag">热搜</text>
+                <text>面膜</text>
+                <text>牛仔裤</text>
+                <text>T恤</text>
+            </view>
+        </view>
+        <view class="top-bg"><image src="../assets/images/banner.png"></image></view>
+    </view>
+    <swiper class="nav-swiper">
+        <block>
+            <swiper-item>
+                <view class="swiper-item">
+                    <view wx:for="{{navList}}" wx:key @tap="goClassify(item.type)">
+                        <image src="http://dummyimage.com/80x80"></image>
+                        <text>{{item.name}}</text>
+                    </view>
+                </view>
+            </swiper-item>
+            <!-- <swiper-item>
+                <view class="swiper-item">2</view>
+            </swiper-item> -->
+        </block>
+    </swiper>
+    <view class="tui-items">
+        <block wx:for="{{plateSection}}" wx:key>
+            <view wx:if="{{index==0}}">{{item.name}}</view>
+            <view wx:if="{{index==1}}" class="tui-no-br">{{item.name}}</view>
+            <view wx:if="{{index==2}}" class="tui-no-bd">{{item.name}}</view>
+            <view wx:if="{{index==3}}" class="tui-no-bd tui-no-br">{{item.name}}</view>
+        </block>
+    </view>
+    <view class="shop-list-title">
+        <text>今日推荐</text>
+        <text>每日为您更新精选商品</text>
+    </view>
+    <view class="shop-list">
+        <view class="shop-list-item" @tap="goDetail(1)">
+            <view class="shop-item-img">
+                <image src="http://dummyimage.com/200x200"></image>
+            </view>
+            <view class="shop-item-info">
+                <view class="shop-item-title">日式多功能颈枕 针织款进口微粒子，全面呵护肩颈 </view>
+                <view class="shop-item-price">
+                    <view class="shop-item-quan">
+                        <view>原价：<text>￥98</text></view>
+                        <view><text>券</text> ￥50</view>
+                        <view>券后价： ￥<text>48</text></view>
+                    </view>
+                    <view class="shop-item-btn">
+                        <text>查看详情</text>
+                        <text>领券购买</text>
+                    </view>
+                </view>
+            </view>
+        </view>
+
+        <view class="shop-list-item">
+            <view class="shop-item-img">
+                <image src="http://dummyimage.com/200x200"></image>
+            </view>
+            <view class="shop-item-info">
+                <view class="shop-item-title">日式多功能颈枕 针织款进口微粒子，全面呵护肩颈 </view>
+                <view class="shop-item-price">
+                    <view class="shop-item-quan">
+                        <view>原价：<text>￥98</text></view>
+                        <view><text>券</text> ￥50</view>
+                        <view>券后价： ￥<text>48</text></view>
+                    </view>
+                    <view class="shop-item-btn">
+                        <text>查看详情</text>
+                        <text>领券购买</text>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>
+</template>
+
+<script>
+import wepy from 'wepy';
+
+export default class Index extends wepy.page {
+    config = {
+        navigationBarTitleText: '搜券'
+    }
+    data = {
+        searchTxt: '',
+        clearIcon: true,
+        navList: [],
+        plateSection: []
+    }
+    onLoad() {
+        this.navList = this.$parent.globalData.navConfig;
+        this.plateSection = this.$parent.globalData.plateSection;
+    }
+    methods = {
+        searchInput(ev) {
+            console.log(ev);
+            this.searchTxt = ev.detail.value;
+            this.clearIcon = false;
+        },
+        doSearch(ev) {
+            console.log(this.searchTxt);
+        },
+        clearInput() {
+            this.searchTxt = '';
+            this.clearIcon = true;
+        },
+        goDetail(id) {
+            wx.navigateTo({
+                url: 'detail?id=' + id
+            });
+        },
+        goClassify(id) {
+            wx.navigateTo({
+                url: 'classify?id=' + id
+            });
+        }
+     }
+}
+</script>
+
 <style lang="scss">
 @import '../assets/scss/_mixin.scss';
 .container{
     min-height: 100%;
-    background: #f6f6f6;
 }
 .top-bg{
     position: absolute;
@@ -116,8 +250,46 @@
     }
 }
 
-.shop-list{
+.tui-items{
+    margin: 20rpx 0;
+    padding: 20rpx;
+    background: #fff;
+    view{
+        width: 50%;
+        height: 150rpx;
+        display: inline-block;
+        box-sizing: border-box;
+        border-bottom: 1rpx solid #ededed;
+        border-right: 1rpx solid #ededed;
+    }
+    .tui-no-bd{
+        border-bottom: 0;
+    }
+    .tui-no-br{
+        border-right: 0;
+    }
+}
+
+
+.shop-list-title{
     margin-top: 20rpx;
+    padding-top: 20rpx;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text:first-child{
+        font-size: 28rpx;
+        font-weight: bold;
+    }
+    text:last-child{
+        font-size: 24rpx;
+        color: $gray;
+    }
+}
+
+.shop-list{
     padding: 20rpx 0;
     padding-top: 0;
     background: #fff;
@@ -222,153 +394,3 @@
 
 
 </style>
-<template>
-<view class="container">
-    <view class="top-part">
-        <view class="top-search">
-            <view class="top-title">海量超级券，全网帮你搜</view>
-            <view class="top-search-input">
-                <image src="../assets/images/search.png"></image>
-                <input placeholder="先领券，后购物，优惠等您搜" confirm-type="search" name="search" @confirm="doSearch" value="{{searchTxt}}" @input="searchInput"/>
-                <image src="../assets/images/close.png" hidden="{{clearIcon}}" @tap="clearInput"></image>
-                <text @tap="doSearch">搜索</text>
-            </view>
-            <view class="hot-search">
-                <text class="hot-tag">热搜</text>
-                <text>面膜</text>
-                <text>牛仔裤</text>
-                <text>T恤</text>
-            </view>
-        </view>
-        <view class="top-bg"><image src="../assets/images/banner.png"></image></view>
-    </view>
-    <swiper class="nav-swiper">
-        <block>
-            <swiper-item>
-                <view class="swiper-item">
-                    <view>
-                        <image src="http://dummyimage.com/80x80"></image>
-                        <text>推荐</text>
-                    </view>
-                    <view>
-                        <image src="http://dummyimage.com/80x80"></image>
-                        <text>男装</text>
-                    </view>
-                    <view>
-                        <image src="http://dummyimage.com/80x80"></image>
-                        <text>女装</text>
-                    </view>
-                    <view>
-                        <image src="http://dummyimage.com/80x80"></image>
-                        <text>母婴</text>
-                    </view>
-                    <view>
-                        <image src="http://dummyimage.com/80x80"></image>
-                        <text>推荐</text>
-                    </view>
-                    <view>
-                        <image src="http://dummyimage.com/80x80"></image>
-                        <text>男装</text>
-                    </view>
-                    <view>
-                        <image src="http://dummyimage.com/80x80"></image>
-                        <text>女装</text>
-                    </view>
-                    <view>
-                        <image src="http://dummyimage.com/80x80"></image>
-                        <text>母婴</text>
-                    </view>
-                    <view>
-                        <image src="http://dummyimage.com/80x80"></image>
-                        <text>母婴</text>
-                    </view>
-                    <view>
-                        <image src="http://dummyimage.com/80x80"></image>
-                        <text>母婴</text>
-                    </view>
-                </view>
-            </swiper-item>
-            <!-- <swiper-item>
-                <view class="swiper-item">2</view>
-            </swiper-item> -->
-        </block>
-    </swiper>
-    <view class="shop-list">
-        <view class="shop-list-item" @tap="goDetail(1)">
-            <view class="shop-item-img">
-                <image src="http://dummyimage.com/200x200"></image>
-            </view>
-            <view class="shop-item-info">
-                <view class="shop-item-title">日式多功能颈枕 针织款进口微粒子，全面呵护肩颈 </view>
-                <view class="shop-item-price">
-                    <view class="shop-item-quan">
-                        <view>原价：<text>￥98</text></view>
-                        <view><text>券</text> ￥50</view>
-                        <view>券后价： ￥<text>48</text></view>
-                    </view>
-                    <view class="shop-item-btn">
-                        <text>查看详情</text>
-                        <text>领券购买</text>
-                    </view>
-                </view>
-            </view>
-        </view>
-
-        <view class="shop-list-item">
-            <view class="shop-item-img">
-                <image src="http://dummyimage.com/200x200"></image>
-            </view>
-            <view class="shop-item-info">
-                <view class="shop-item-title">日式多功能颈枕 针织款进口微粒子，全面呵护肩颈 </view>
-                <view class="shop-item-price">
-                    <view class="shop-item-quan">
-                        <view>原价：<text>￥98</text></view>
-                        <view><text>券</text> ￥50</view>
-                        <view>券后价： ￥<text>48</text></view>
-                    </view>
-                    <view class="shop-item-btn">
-                        <text>查看详情</text>
-                        <text>领券购买</text>
-                    </view>
-                </view>
-            </view>
-        </view>
-    </view>
-</view>
-</template>
-
-<script>
-import wepy from 'wepy';
-
-export default class Index extends wepy.page {
-    config = {
-        navigationBarTitleText: '搜券'
-    }
-    data = {
-        searchTxt: '',
-        clearIcon: true
-    }
-    onLoad() {
-        console.log('onLoad');
-    }
-    methods = {
-        searchInput(ev) {
-            console.log(ev);
-            this.searchTxt = ev.detail.value;
-            this.clearIcon = false;
-        },
-        doSearch(ev) {
-            console.log(this.searchTxt);
-        },
-        clearInput() {
-            this.searchTxt = '';
-            this.clearIcon = true;
-        },
-        goDetail(id) {
-            wx.navigateTo({
-                url: 'detail?id=' + id
-            });
-        }
-    }
-}
-</script>

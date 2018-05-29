@@ -1,18 +1,13 @@
-<style lang="scss">
-page{
-    height: 100%;
-}
-</style>
-
 <script>
-import wepy from 'wepy'
+import wepy from 'wepy';
 
 export default class extends wepy.app {
     config = {
         pages: [
             'pages/index',
             'pages/detail',
-            'pages/tutorial'
+            'pages/tutorial',
+            'pages/classify'
         ],
         window: {
             backgroundTextStyle: 'light',
@@ -23,7 +18,36 @@ export default class extends wepy.app {
     }
 
     onLaunch() {
-        console.log('on launch')
+        console.log('on launch');
+    }
+
+    globalData = {
+        // 分类
+        navConfig: [
+            {type: 'all', name: '全部分类'},
+            {type: 'wz', name: '女装'},
+            {type: 'mz', name: '男装'},
+            {type: 'my', name: '母婴'},
+            {type: 'hzp', name: '化妆品'},
+            {type: 'sm', name: '数码家电'},
+            {type: 'xb', name: '鞋包配饰'},
+            {type: 'life', name: '家居日用'},
+            {type: 'food', name: '食品'},
+            {type: 'port', name: '文体'}
+        ],
+        // 首页4个板块
+        plateSection: [
+            {type: 'nine', name: '9块9'},
+            {type: 'nine', name: '热推'},
+            {type: 'nine', name: 'hello'},
+            {type: 'nine', name: 'bac'}
+        ]
     }
 }
 </script>
+<style lang="scss">
+page{
+    height: 100%;
+    background: #f6f6f6;
+}
+</style>
