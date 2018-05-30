@@ -23,7 +23,7 @@
             <swiper-item>
                 <view class="swiper-item">
                     <view wx:for="{{navList}}" wx:key @tap="goClassify(item.type)">
-                        <image src="http://dummyimage.com/80x80"></image>
+                        <image src="{{item.icon}}"></image>
                         <text>{{item.name}}</text>
                     </view>
                 </view>
@@ -226,7 +226,7 @@ export default class Index extends wepy.page {
     }
 }
 .nav-swiper{
-    height: 370rpx;
+    height: 330rpx;
     background: #fff;
 }
 .swiper-item{
@@ -239,8 +239,8 @@ export default class Index extends wepy.page {
         padding-top: 40rpx;
         box-sizing: border-box;
         image{
-            width: 80rpx;
-            height: 80rpx;
+            width: 60rpx;
+            height: 60rpx;
         }
         text{
             padding-top: 10rpx;

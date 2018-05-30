@@ -25,7 +25,7 @@
             </view>
             <view class="shop-share">
                 <view>
-                    <image src="http://dummyimage.com/40x40"></image>
+                    <image src="../assets/images/share.png"></image>
                     <text>分享</text>
                 </view>
             </view>
@@ -53,13 +53,13 @@
     </scroll-view>
     <view class="detail-fixed">
         <view class="fixed-btns">
-            <image src="http://dummyimage.com/60x60"></image>
-            <image src="http://dummyimage.com/60x60"></image>
+            <image src="../assets/images/home.png"></image>
+            <image src="../assets/images/share.png"></image>
         </view>
         <view class="fixed-do"><text @tap="goTutorial">如何购买</text><text>立即领券购买</text></view>
     </view>
     <view hidden="{{toTopShow}}" class="right-fixed">
-        <image src="http://dummyimage.com/60x60" @tap="goTop"></image>
+        <image src="../assets/images/top.png" @tap="goTop"></image>
     </view>
 </template>
 

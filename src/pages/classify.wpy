@@ -5,9 +5,9 @@
             <view>销量优先</view>
             <view>价格排序</view>
             <view @tap="selectChange">
-                <image src="http://dummyimage.com/40x40"></image>
+                <image src="../assets/images/menu.png"></image>
                 <text>筛选</text>
-                <image src="http://dummyimage.com/40x40"></image>
+                <image src="../assets/images/select.png"></image>
             </view>
         </view>
         <view hidden="{{selectFlag}}" class="nav-select">

@@ -24,16 +24,16 @@ export default class extends wepy.app {
     globalData = {
         // 分类
         navConfig: [
-            {type: 'all', name: '全部分类'},
-            {type: 'wz', name: '女装'},
-            {type: 'mz', name: '男装'},
-            {type: 'my', name: '母婴'},
-            {type: 'hzp', name: '化妆品'},
-            {type: 'sm', name: '数码家电'},
-            {type: 'xb', name: '鞋包配饰'},
-            {type: 'life', name: '家居日用'},
-            {type: 'food', name: '食品'},
-            {type: 'port', name: '文体'}
+            {type: 'all', name: '全部分类', icon: '../assets/images/all.png'},
+            {type: 'wz', name: '女装', icon: '../assets/images/wz.png'},
+            {type: 'mz', name: '男装', icon: '../assets/images/mz.png'},
+            {type: 'my', name: '母婴', icon: '../assets/images/my.png'},
+            {type: 'hzp', name: '化妆品', icon: '../assets/images/hzp.png'},
+            {type: 'sm', name: '数码家电', icon: '../assets/images/sm.png'},
+            {type: 'xb', name: '鞋包配饰', icon: '../assets/images/xb.png'},
+            {type: 'life', name: '家居日用', icon: '../assets/images/life.png'},
+            {type: 'food', name: '食品', icon: '../assets/images/food.png'},
+            {type: 'port', name: '文体', icon: '../assets/images/port.png'}
         ],
         // 首页4个板块
         plateSection: [
