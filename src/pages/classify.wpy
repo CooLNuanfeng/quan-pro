@@ -48,7 +48,7 @@
         </view>
         <view hidden="{{selectFlag}}" class="mask" @tap="closeMask"></view>
         <view class="result-list">
-            <view class="result-item">
+            <view class="result-item" @tap="goDetail(1)">
                 <view class="result-item-img">
                     <image src="http://dummyimage.com/200x200"></image>
                 </view>
@@ -226,6 +226,11 @@ export default class Index extends wepy.page {
         },
         closeMask() {
             this.selectFlag = true;
+        },
+        goDetail(id) {
+            wx.navigateTo({
+                url: 'detail?id=' + id
+            });
         }
     }
 }
@@ -358,6 +363,7 @@ export default class Index extends wepy.page {
         }
     }
     view:last-child{
+        font-size: 20rpx;
         background: $themeRed;
         @extend .tag-icon;
     }

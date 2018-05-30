@@ -145,15 +145,18 @@ export default class Index extends wepy.page {
     }
 }
 .shop-price{
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
     font-size: 26rpx;
     color: $black;
     view{
-        display: inline-block;
-        vertical-align: middle;
+        display: inline-flex;
+        align-items: center;
         text{
             color: $themeRed;
             text{
-                font-size: 30rpx;
+                font-size: 36rpx;
                 font-weight: bold;
             }
         }
